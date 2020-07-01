@@ -1,0 +1,7 @@
+.Board {
+  box-sizing: border-box;
+  position: relative;
+  width: 784px;
+  height: 600px;
+  margin: auto;
+}
