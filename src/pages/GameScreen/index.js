@@ -1,11 +1,31 @@
 import "./style.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { selectUser } from "../../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Board from "../../components/Game/Board";
 import Button from "react-bootstrap/Button";
 import Levels from "./levels.json";
+
+function useInterval(callback, delay) {
+  const savedCallback = useRef();
+
+  // Remember the latest callback.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval.
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}
 
 export default function GameScreen() {
   const [currentWave, setCurrentWave] = useState(0);
@@ -18,8 +38,12 @@ export default function GameScreen() {
 
   useEffect(() => {}, [history]);
 
+  useInterval(() => {
+    nextWave({});
+  }, 5000);
+
   function nextWave(event) {
-    event.preventDefault();
+    // event.preventDefault();
     //Cycles through the waves, when there's no more, and the player has enough points goes to the next level
     if (currentWave < Levels.allLevels[currentLevel].allWaves.length - 1) {
       setCurrentWave(currentWave + 1);
