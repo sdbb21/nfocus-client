@@ -1,4 +1,4 @@
-import "./App.css";
+import "./style.css";
 import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
