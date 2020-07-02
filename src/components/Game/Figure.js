@@ -1,4 +1,5 @@
 import React from "react";
+import "./Figure.css";
 import Figure0 from "../../svg/pyramid_s.svg";
 import Figure1 from "../../svg/pyramid_l.svg";
 import Figure2 from "../../svg/cube_s.svg";
@@ -21,6 +22,7 @@ const FigurePiece = (props) => {
         height: "112px",
         left: props.X * 112,
         top: props.Y * 56,
+        animationDuration: props.animDuration + "s",
       }}>
       <img src={figureSvgs[props.figureType]} alt="figure" />
     </div>

@@ -1,23 +1,74 @@
-import "./App.css";
-import React, { useState, useEffect } from "react";
-import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
-import { useDispatch } from "react-redux";
+import "./style.css";
+import React, { useState, useEffect, useRef } from "react";
+import { selectUser } from "../../store/user/selectors";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Board from "../../components/Game/Board";
+import Button from "react-bootstrap/Button";
+import Levels from "./levels.json";
 
-export default function SignUp() {
+function useInterval(callback, delay) {
+  const savedCallback = useRef();
+
+  // Remember the latest callback.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval.
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}
+
+export default function GameScreen() {
+  const [currentWave, setCurrentWave] = useState(0);
+  const [currentLevel, setCurrentLevel] = useState(0);
+
+  const user = useSelector(selectUser);
+
   const dispatch = useDispatch();
   const history = useHistory();
-  const board = [0];
 
   useEffect(() => {}, [history]);
 
+  useInterval(() => {
+    nextWave({});
+  }, 5000);
+
+  function nextWave(event) {
+    // event.preventDefault();
+    //Cycles through the waves, when there's no more, and the player has enough points goes to the next level
+    if (currentWave < Levels.allLevels[currentLevel].allWaves.length - 1) {
+      setCurrentWave(currentWave + 1);
+    } else if (currentLevel < Levels.allLevels.length - 1) {
+      setCurrentWave(0);
+      setCurrentLevel(currentLevel + 1);
+    } else {
+      //Game Over
+      setCurrentWave(0);
+      setCurrentLevel(0);
+    }
+  }
+
   return (
     <div>
-      <h3>Game Screen</h3>
+      <h3>{user.name}</h3>
       <div className="Gameboard">
-        <Board />
+        <Board
+          piecesArray={
+            Levels.allLevels[currentLevel].allWaves[currentWave].pieces
+          }
+        />
+        <Button onClick={(e) => nextWave(e)} type="submit">
+          Next
+        </Button>
       </div>
     </div>
   );
