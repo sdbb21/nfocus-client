@@ -1,5 +1,12 @@
 import React from "react";
-import Figure from "../../svg/figure.svg";
+import Figure0 from "../../svg/pyramid_s.svg";
+import Figure1 from "../../svg/pyramid_l.svg";
+import Figure2 from "../../svg/cube_s.svg";
+import Figure3 from "../../svg/cube_l.svg";
+import Figure4 from "../../svg/sphere_s.svg";
+import Figure5 from "../../svg/sphere_l.svg";
+
+const figureSvgs = [Figure0, Figure1, Figure2, Figure3, Figure4, Figure5];
 
 const FigurePiece = (props) => {
   return (
@@ -15,7 +22,7 @@ const FigurePiece = (props) => {
         left: props.X * 112,
         top: props.Y * 56,
       }}>
-      <img src={Figure} alt="figure" />
+      <img src={figureSvgs[props.figureType]} alt="figure" />
     </div>
   );
 };

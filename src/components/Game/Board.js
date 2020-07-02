@@ -28,15 +28,15 @@ const Board = () => {
           return <BoardPiece key={`${i}${j}`} id={`${i}${j}`} X={col} Y={i} />;
         });
       })}
-      <FigurePiece X={1} Y={2} />
-      <FigurePiece X={2} Y={1} />
-      <FigurePiece X={3} Y={0} />
-      <FigurePiece X={2} Y={3} />
-      <FigurePiece X={3} Y={2} />
-      <FigurePiece X={4} Y={1} />
-      <FigurePiece X={3} Y={4} />
-      <FigurePiece X={4} Y={3} />
-      <FigurePiece X={5} Y={2} />
+      <FigurePiece X={1} Y={2} figureType={0} />
+      <FigurePiece X={2} Y={1} figureType={1} />
+      <FigurePiece X={3} Y={0} figureType={2} />
+      <FigurePiece X={2} Y={3} figureType={3} />
+      <FigurePiece X={3} Y={2} figureType={4} />
+      <FigurePiece X={4} Y={1} figureType={5} />
+      <FigurePiece X={3} Y={4} figureType={5} />
+      <FigurePiece X={4} Y={3} figureType={0} />
+      <FigurePiece X={5} Y={2} figureType={1} />
     </div>
   );
 };
