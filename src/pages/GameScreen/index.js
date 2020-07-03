@@ -35,28 +35,26 @@ let soundStateArray = [];
 export default function GameScreen() {
   const [currentWave, setCurrentWave] = useState(0);
   const [currentLevel, setCurrentLevel] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isFigureMatch, setIsFigureMatch] = useState(false);
+  const [isSoundMatch, setIsSoundMatch] = useState(false);
+  const [messageToPlayer, setMessageToPlayer] = useState("Hola");
+  const [delay, setDelay] = useState(5000);
 
   const user = useSelector(selectUser);
 
   const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {}, [history]);
+  useEffect(() => {}, []);
 
   useInterval(() => {
-    if (isPlaying) {
-      loadStates();
-      isWaveMatch();
-      nextWave({});
-    }
-  }, 5000);
+    loadStates();
+    isWaveMatch();
+    nextWave();
+  }, delay);
 
-  function startGame(event) {
-    setIsPlaying(!isPlaying);
-  }
-
-  function nextWave(event) {
+  function nextWave() {
     //Cycles through the waves, when there's no more, and the player has enough points goes to the next level
     if (currentWave < Levels.allLevels[currentLevel].allWaves.length - 1) {
       setCurrentWave(currentWave + 1);
@@ -67,6 +65,10 @@ export default function GameScreen() {
       //Game Over
       setCurrentWave(0);
       setCurrentLevel(0);
+    }
+    //Runs the cycle until the array is full
+    if (piecesStateArray.length === nBack + 1) {
+      setDelay(null);
     }
   }
 
@@ -89,6 +91,7 @@ export default function GameScreen() {
         Levels.allLevels[currentLevel].allWaves[currentWave].sound
       );
     }
+
     console.log(piecesStateArray, soundStateArray);
   }
 
@@ -98,29 +101,47 @@ export default function GameScreen() {
       piecesStateArray.length === nBack + 1 &&
       _.isEqual(piecesStateArray[0], piecesStateArray[nBack])
     ) {
-      console.log("IS A FIGURE MATCH!");
+      setIsFigureMatch(true);
+      console.log("Figure Match", isFigureMatch);
     }
+
     if (
       soundStateArray.length === nBack + 1 &&
       _.isEqual(soundStateArray[0], soundStateArray[nBack])
     ) {
-      console.log("IS A SOUND MATCH!");
+      setIsSoundMatch(true);
+      console.log("Sound Match", isSoundMatch);
     }
   }
 
-  return (
-    <div>
-      <h3>{user.name}</h3>
-      <div className="Gameboard">
-        <Board
-          piecesArray={
-            Levels.allLevels[currentLevel].allWaves[currentWave].pieces
-          }
-        />
-        <Button onClick={(e) => startGame(e)} type="submit">
-          {isPlaying ? "Pause" : "Start"}
-        </Button>
+  function checkPlayerAnswer(event) {
+    if (event === "both") {
+    }
+    //FIX THIS!
+    setDelay(5000);
+  }
+
+  if (piecesStateArray.length > 0 && piecesStateArray.length < nBack + 1) {
+    return (
+      <div>
+        <h3 style={{ color: "red" }}>{user.name}</h3>
+        <div className="Gameboard">
+          <Board piecesArray={piecesStateArray[piecesStateArray.length - 1]} />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  if (piecesStateArray.length === nBack + 1) {
+    return (
+      <div>
+        <h3 style={{ color: "red" }}>{user.name}</h3>
+        <div className="Gameboard">
+          <Board piecesArray={piecesStateArray[nBack]} />
+        </div>
+        <button onClick={(e) => checkPlayerAnswer("both")}>Both</button>
+      </div>
+    );
+  }
+  return <h1>Loading...</h1>;
 }
