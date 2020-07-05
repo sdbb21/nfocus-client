@@ -149,7 +149,7 @@ export default function GameScreen() {
           setMessageToPlayer("Correct! Sound Match!");
           updateScore(1000);
         } else if (isFigureMatch) {
-          setMessageToPlayer("Wrong! It was a Sound Match!");
+          setMessageToPlayer("Wrong! It was a Figure Match!");
         } else {
           setMessageToPlayer("Wrong! There was no Match!");
         }
@@ -162,12 +162,26 @@ export default function GameScreen() {
           setMessageToPlayer("Correct! Double Match!");
           updateScore(1000);
         } else if (isSoundMatch) {
-          setMessageToPlayer("It was a Sound Match! But you got one!");
-          updateScore(500);
-        } else if (isFigureMatch) {
           setMessageToPlayer("Wrong! It was a Sound Match!");
+        } else if (isFigureMatch) {
+          setMessageToPlayer("Wrong! It was a Figure Match!");
         } else {
           setMessageToPlayer("Wrong! There was no Match!");
+        }
+        setIsPlaying(false);
+        setDelay(5000);
+        return;
+
+      case "none":
+        if (isFigureMatch && isSoundMatch) {
+          setMessageToPlayer("Wrong! It was a Double Match!");
+        } else if (isSoundMatch) {
+          setMessageToPlayer("Wrong! It was a Sound Match!");
+        } else if (isFigureMatch) {
+          setMessageToPlayer("Wrong! It was a Figure Match!");
+        } else {
+          setMessageToPlayer("Correct! There was no Match!");
+          updateScore(1000);
         }
         setIsPlaying(false);
         setDelay(5000);
