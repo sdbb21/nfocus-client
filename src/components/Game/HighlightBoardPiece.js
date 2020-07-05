@@ -1,6 +1,5 @@
 import React from "react";
 import pieceHighlight from "../../svg/piecelight.svg";
-import pieceNormal from "../../svg/piecedark.svg";
 import "./BoardPiece.css";
 
 const BoardPiece = (props) => {
@@ -16,7 +15,7 @@ const BoardPiece = (props) => {
         left: props.X * 112,
         top: props.Y * 28,
       }}>
-      <img className="Piece" src={pieceNormal} alt="piece" />
+      <img className="Piece" src={pieceHighlight} alt="piece" />
     </div>
   );
 };

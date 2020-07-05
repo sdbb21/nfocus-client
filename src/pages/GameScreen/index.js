@@ -31,32 +31,32 @@ function useInterval(callback, delay) {
 const nBack = 2;
 let piecesStateArray = [];
 let soundStateArray = [];
+let isFigureMatch = false;
+let isSoundMatch = false;
 
 export default function GameScreen() {
   const [currentWave, setCurrentWave] = useState(0);
   const [currentLevel, setCurrentLevel] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [score, setScore] = useState(0);
+  const [messageToPlayer, setMessageToPlayer] = useState("");
+  const [delay, setDelay] = useState(5000);
 
   const user = useSelector(selectUser);
 
   const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {}, [history]);
+  useEffect(() => {}, []);
 
   useInterval(() => {
-    if (isPlaying) {
-      loadStates();
-      isWaveMatch();
-      nextWave({});
-    }
-  }, 5000);
+    loadStates();
+    isWaveMatch();
+    nextWave();
+    setMessageToPlayer("");
+  }, delay);
 
-  function startGame(event) {
-    setIsPlaying(!isPlaying);
-  }
-
-  function nextWave(event) {
+  function nextWave() {
     //Cycles through the waves, when there's no more, and the player has enough points goes to the next level
     if (currentWave < Levels.allLevels[currentLevel].allWaves.length - 1) {
       setCurrentWave(currentWave + 1);
@@ -67,6 +67,11 @@ export default function GameScreen() {
       //Game Over
       setCurrentWave(0);
       setCurrentLevel(0);
+    }
+    //Runs the cycle until the array is full
+    if (piecesStateArray.length === nBack + 1) {
+      setDelay(null);
+      setIsPlaying(true);
     }
   }
 
@@ -89,6 +94,7 @@ export default function GameScreen() {
         Levels.allLevels[currentLevel].allWaves[currentWave].sound
       );
     }
+
     console.log(piecesStateArray, soundStateArray);
   }
 
@@ -98,29 +104,121 @@ export default function GameScreen() {
       piecesStateArray.length === nBack + 1 &&
       _.isEqual(piecesStateArray[0], piecesStateArray[nBack])
     ) {
-      console.log("IS A FIGURE MATCH!");
+      isFigureMatch = true;
+      console.log("Figure Match", isFigureMatch);
     }
+
     if (
       soundStateArray.length === nBack + 1 &&
       _.isEqual(soundStateArray[0], soundStateArray[nBack])
     ) {
-      console.log("IS A SOUND MATCH!");
+      isSoundMatch = true;
+      console.log("Sound Match", isSoundMatch);
     }
   }
 
-  return (
-    <div>
-      <h3>{user.name}</h3>
-      <div className="Gameboard">
-        <Board
-          piecesArray={
-            Levels.allLevels[currentLevel].allWaves[currentWave].pieces
-          }
-        />
-        <Button onClick={(e) => startGame(e)} type="submit">
-          {isPlaying ? "Pause" : "Start"}
-        </Button>
-      </div>
+  function updateScore(newScore) {
+    isFigureMatch = false;
+    isSoundMatch = false;
+    setScore(score + newScore);
+  }
+
+  function checkPlayerAnswer(event) {
+    switch (event) {
+      case "figure":
+        if (isFigureMatch && isSoundMatch) {
+          setMessageToPlayer("It was a Double Match! But you got one!");
+          updateScore(500);
+        } else if (isFigureMatch) {
+          setMessageToPlayer("Correct! Figure Match!");
+          updateScore(1000);
+        } else if (isSoundMatch) {
+          setMessageToPlayer("Wrong! It was a Sound Match!");
+        } else {
+          setMessageToPlayer("Wrong! There was no Match!");
+        }
+        setIsPlaying(false);
+        setDelay(5000);
+        return;
+
+      case "sound":
+        if (isFigureMatch && isSoundMatch) {
+          setMessageToPlayer("It was a Double Match! But you got one!");
+          updateScore(500);
+        } else if (isSoundMatch) {
+          setMessageToPlayer("Correct! Sound Match!");
+          updateScore(1000);
+        } else if (isFigureMatch) {
+          setMessageToPlayer("Wrong! It was a Sound Match!");
+        } else {
+          setMessageToPlayer("Wrong! There was no Match!");
+        }
+        setIsPlaying(false);
+        setDelay(5000);
+        return;
+
+      case "both":
+        if (isFigureMatch && isSoundMatch) {
+          setMessageToPlayer("Correct! Double Match!");
+          updateScore(1000);
+        } else if (isSoundMatch) {
+          setMessageToPlayer("It was a Sound Match! But you got one!");
+          updateScore(500);
+        } else if (isFigureMatch) {
+          setMessageToPlayer("Wrong! It was a Sound Match!");
+        } else {
+          setMessageToPlayer("Wrong! There was no Match!");
+        }
+        setIsPlaying(false);
+        setDelay(5000);
+        return;
+
+      default:
+        return;
+    }
+  }
+
+  const userInput = isPlaying ? (
+    <div className="UserInput">
+      <button onClick={(e) => checkPlayerAnswer("figure")}>Figure</button>
+      <button onClick={(e) => checkPlayerAnswer("both")}>Both</button>
+      <button onClick={(e) => checkPlayerAnswer("sound")}>Sound</button>
+      <button onClick={(e) => checkPlayerAnswer("none")}>No Match</button>
     </div>
+  ) : (
+    ""
   );
+
+  if (piecesStateArray.length > 0 && piecesStateArray.length < nBack + 1) {
+    return (
+      <div>
+        <div className="GameHeader">
+          <h3>Prepare to play {user.name}</h3>
+        </div>
+        <div className="Gameboard">
+          <Board piecesArray={piecesStateArray[piecesStateArray.length - 1]} />
+        </div>
+      </div>
+    );
+  }
+
+  if (piecesStateArray.length === nBack + 1) {
+    return (
+      <div>
+        <div className="GameHeader">
+          <h3>
+            Score: {score} Level: {currentLevel + 1} Wave: {currentWave}
+          </h3>
+        </div>
+        <div className="Gameboard">
+          <Board piecesArray={piecesStateArray[nBack]} />
+        </div>
+        <div className="GameFooter">
+          <div>{userInput}</div>
+          <h1>{messageToPlayer}</h1>
+        </div>
+      </div>
+    );
+  }
+  return <h1>Loading...</h1>;
 }

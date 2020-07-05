@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^5.4.0",
+    "eslint-plugin-react-hooks": "^4.0.5",
     "file-loader": "^6.0.0"
   }
 }
