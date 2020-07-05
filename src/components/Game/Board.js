@@ -1,21 +1,36 @@
 import "./Board.css";
 import React from "react";
 import BoardPiece from "./BoardPiece";
+import HighlightBoardPiece from "./HighlightBoardPiece";
+
 import FigurePiece from "../../components/Game/Figure";
 const boardArray = [
   [0, 1, 2, 3, 4, 5, 6],
   [0.5, 1.5, 2.5, 3.5, 4.5, 5.5],
-  [0, 1, 2, 3, 4, 5, 6],
+  [0, 1, 2, /*3*/ 4, 5, 6],
+  [0.5, 1.5, 2.5, 3.5, 4.5, 5.5],
+  [0, 1, /*2,*/ 3, /*4,*/ 5, 6],
+  [0.5, 1.5, 2.5, 3.5, 4.5, 5.5],
+  [0, /*1,*/ 2, /*3*/ 4, /*5,*/ 6],
+  [0.5, 1.5, 2.5, 3.5, 4.5, 5.5],
+  [0, 1, /*2,*/ 3, /*4,*/ 5, 6],
+  [0.5, 1.5, 2.5, 3.5, 4.5, 5.5],
+  [0, 1, 2, /*3*/ 4, 5, 6],
   [0.5, 1.5, 2.5, 3.5, 4.5, 5.5],
   [0, 1, 2, 3, 4, 5, 6],
-  [0.5, 1.5, 2.5, 3.5, 4.5, 5.5],
-  [0, 1, 2, 3, 4, 5, 6],
-  [0.5, 1.5, 2.5, 3.5, 4.5, 5.5],
-  [0, 1, 2, 3, 4, 5, 6],
-  [0.5, 1.5, 2.5, 3.5, 4.5, 5.5],
-  [0, 1, 2, 3, 4, 5, 6],
-  [0.5, 1.5, 2.5, 3.5, 4.5, 5.5],
-  [0, 1, 2, 3, 4, 5, 6],
+];
+const boardHighlights = [
+  [],
+  [],
+  [3],
+  [],
+  [2, 4],
+  [],
+  [1, 3, 5],
+  [],
+  [2, 4],
+  [],
+  [3],
 ];
 
 const Board = (props) => {
@@ -23,7 +38,29 @@ const Board = (props) => {
     <div className="Board">
       {boardArray.map((row, i) => {
         return row.map((col, j) => {
-          return <BoardPiece key={`${i}${j}`} id={`${i}${j}`} X={col} Y={i} />;
+          return (
+            <BoardPiece
+              key={`${i}${j}`}
+              id={`${i}${j}`}
+              X={col}
+              Y={i}
+              highlight="false"
+            />
+          );
+        });
+      })}
+
+      {boardHighlights.map((row, i) => {
+        return row.map((col, j) => {
+          return (
+            <HighlightBoardPiece
+              key={`${i}${j}`}
+              id={`${i}${j}`}
+              X={col}
+              Y={i}
+              highlight={true}
+            />
+          );
         });
       })}
 
