@@ -40,6 +40,7 @@ export default function GameScreen() {
   const [currentLevel, setCurrentLevel] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [score, setScore] = useState(0);
+  const [mistakes, setMistakes] = useState(0);
   const [messageToPlayer, setMessageToPlayer] = useState("");
   const [delay, setDelay] = useState(5000);
 
@@ -55,6 +56,7 @@ export default function GameScreen() {
     isWaveMatch();
     nextWave();
     setMessageToPlayer("");
+    gameOver();
   }, delay);
 
   function nextWave() {
@@ -66,13 +68,20 @@ export default function GameScreen() {
       setCurrentLevel(currentLevel + 1);
     } else {
       //Game Over
-      setCurrentWave(0);
-      setCurrentLevel(0);
+      setMessageToPlayer("You Win");
     }
     //Runs the cycle until the array is full
     if (piecesStateArray.length === nBack + 1) {
       setDelay(null);
       setIsPlaying(true);
+    }
+  }
+
+  function gameOver() {
+    if (mistakes === 3) {
+      setIsPlaying(false);
+      setCurrentWave(0);
+      setCurrentLevel(0);
     }
   }
 
@@ -124,6 +133,12 @@ export default function GameScreen() {
     setScore(score + newScore);
   }
 
+  function updateMistakes() {
+    isFigureMatch = false;
+    isSoundMatch = false;
+    setMistakes(mistakes + 1);
+  }
+
   function checkPlayerAnswer(event) {
     switch (event) {
       case "figure":
@@ -135,8 +150,10 @@ export default function GameScreen() {
           updateScore(1000);
         } else if (isSoundMatch) {
           setMessageToPlayer("Wrong! It was a Sound Match!");
+          updateMistakes();
         } else {
           setMessageToPlayer("Wrong! There was no Match!");
+          updateMistakes();
         }
         setIsPlaying(false);
         setDelay(5000);
@@ -151,8 +168,10 @@ export default function GameScreen() {
           updateScore(1000);
         } else if (isFigureMatch) {
           setMessageToPlayer("Wrong! It was a Figure Match!");
+          updateMistakes();
         } else {
           setMessageToPlayer("Wrong! There was no Match!");
+          updateMistakes();
         }
         setIsPlaying(false);
         setDelay(5000);
@@ -164,25 +183,31 @@ export default function GameScreen() {
           updateScore(1000);
         } else if (isSoundMatch) {
           setMessageToPlayer("Wrong! It was a Sound Match!");
+          updateMistakes();
         } else if (isFigureMatch) {
           setMessageToPlayer("Wrong! It was a Figure Match!");
+          updateMistakes();
         } else {
           setMessageToPlayer("Wrong! There was no Match!");
+          updateMistakes();
         }
         setIsPlaying(false);
         setDelay(5000);
         return;
 
       case "none":
-        if (isFigureMatch && isSoundMatch) {
-          setMessageToPlayer("Wrong! It was a Double Match!");
-        } else if (isSoundMatch) {
-          setMessageToPlayer("Wrong! It was a Sound Match!");
-        } else if (isFigureMatch) {
-          setMessageToPlayer("Wrong! It was a Figure Match!");
-        } else {
+        if (!isFigureMatch && !isSoundMatch) {
           setMessageToPlayer("Correct! There was no Match!");
           updateScore(1000);
+        } else if (isSoundMatch) {
+          setMessageToPlayer("Wrong! It was a Sound Match!");
+          updateMistakes();
+        } else if (isFigureMatch) {
+          setMessageToPlayer("Wrong! It was a Figure Match!");
+          updateMistakes();
+        } else {
+          setMessageToPlayer("Wrong! It was a Double Match!");
+          updateMistakes();
         }
         setIsPlaying(false);
         setDelay(5000);
@@ -223,7 +248,7 @@ export default function GameScreen() {
     );
   }
 
-  if (piecesStateArray.length === nBack + 1) {
+  if (piecesStateArray.length === nBack + 1 && mistakes < 3) {
     return (
       <div>
         <div className="GameHeader">
@@ -242,6 +267,15 @@ export default function GameScreen() {
           <div>{userInput}</div>
           <h1>{messageToPlayer}</h1>
         </div>
+      </div>
+    );
+  }
+
+  if (mistakes === 3) {
+    return (
+      <div className="Gameboard">
+        <Board piecesArray={[]} />
+        <h1>You Lose</h1>
       </div>
     );
   }
