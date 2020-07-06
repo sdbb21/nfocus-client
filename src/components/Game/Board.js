@@ -38,15 +38,7 @@ const Board = (props) => {
     <div className="Board">
       {boardArray.map((row, i) => {
         return row.map((col, j) => {
-          return (
-            <BoardPiece
-              key={`${i}${j}`}
-              id={`${i}${j}`}
-              X={col}
-              Y={i}
-              highlight="false"
-            />
-          );
+          return <BoardPiece key={`${i}${j}`} id={`${i}${j}`} X={col} Y={i} />;
         });
       })}
 
@@ -58,7 +50,6 @@ const Board = (props) => {
               id={`${i}${j}`}
               X={col}
               Y={i}
-              highlight={true}
             />
           );
         });
