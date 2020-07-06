@@ -4,9 +4,10 @@ import { selectUser } from "../../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Board from "../../components/Game/Board";
-import Button from "react-bootstrap/Button";
+
 import Levels from "./levels.json";
 import _ from "lodash";
+import SoundPlayer from "../../components/Game/SoundPlayer";
 
 function useInterval(callback, delay) {
   const savedCallback = useRef();
@@ -211,6 +212,12 @@ export default function GameScreen() {
         </div>
         <div className="Gameboard">
           <Board piecesArray={piecesStateArray[piecesStateArray.length - 1]} />
+          <div className="SoundPlayer">
+            <SoundPlayer
+              soundType={soundStateArray[soundStateArray.length - 1]}
+            />
+          </div>
+          <h1>{soundStateArray[soundStateArray.length - 1]}</h1>
         </div>
       </div>
     );
@@ -226,6 +233,10 @@ export default function GameScreen() {
         </div>
         <div className="Gameboard">
           <Board piecesArray={piecesStateArray[nBack]} />
+          <div className="SoundPlayer">
+            <SoundPlayer soundType={soundStateArray[nBack]} />
+          </div>
+          <h1>{soundStateArray[nBack]}</h1>
         </div>
         <div className="GameFooter">
           <div>{userInput}</div>

@@ -16,6 +16,10 @@
   border: 1px solid red;
   animation: AnimationName 30s ease infinite;
 }
+
+.SoundPlayer {
+  visibility: hidden;
+}
 .UserInput {
   width: 900px;
   height: 100px;
