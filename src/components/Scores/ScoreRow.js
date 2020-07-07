@@ -5,7 +5,7 @@ export default function ScoreRow(props) {
     <tr>
       <td>{props.position + 1}</td>
       <td>{props.score}</td>
-      <td>{props.name}</td>
+      <td>{props.date}</td>
     </tr>
   );
 }

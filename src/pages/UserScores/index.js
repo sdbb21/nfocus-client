@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Moment from "moment";
 import Card from "react-bootstrap/Card";
 import ScoreRow from "../../components/Scores/ScoreRow";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,7 +40,7 @@ export default function SignUp() {
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Score</th>
-                <th scope="col">Player</th>
+                <th scope="col">Date</th>
               </tr>
             </thead>
             <tbody>
@@ -49,7 +50,7 @@ export default function SignUp() {
                   id={score.id}
                   position={i}
                   score={score.score}
-                  name={score.user.name}
+                  date={Moment(score.createdAt).format("LL")}
                 />
               ))}
             </tbody>
