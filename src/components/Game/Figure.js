@@ -4,8 +4,8 @@ import Figure0 from "../../svg/pyramid_s.svg";
 import Figure1 from "../../svg/pyramid_l.svg";
 import Figure2 from "../../svg/cube_s.svg";
 import Figure3 from "../../svg/cube_l.svg";
-import Figure4 from "../../svg/sphere_s.svg";
-import Figure5 from "../../svg/sphere_l.svg";
+import Figure4 from "../../svg/trunk_s.svg";
+import Figure5 from "../../svg/trunk_l.svg";
 
 const figureSvgs = [Figure0, Figure1, Figure2, Figure3, Figure4, Figure5];
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 24.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;" xml:space="preserve">
 <style type="text/css">
@@ -10,14 +10,23 @@
 	.st4{fill:#FACC5C;}
 	.st5{fill:#448A4C;}
 	.st6{fill:#A6D254;}
-	.st7{display:inline;fill:#FFFFFF;stroke:#231F20;stroke-miterlimit:10;}
-	.st8{fill:#0B5159;}
-	.st9{fill:#2E788A;}
-	.st10{fill:#44A4C2;}
-	.st11{fill:#7AE6FF;}
-	.st12{fill:none;stroke:#231F20;stroke-miterlimit:10;}
-	.st13{fill:#9F5B8B;}
-	.st14{fill:#FF96B2;}
+	.st7{fill:#7C3499;}
+	.st8{fill:#9B33FF;}
+	.st9{fill:#BF66FF;}
+	.st10{fill:#993333;}
+	.st11{fill:#FF3366;}
+	.st12{fill:#FF6699;}
+	.st13{display:inline;fill:#FFFFFF;stroke:#231F20;stroke-miterlimit:10;}
+	.st14{fill:#0B204F;}
+	.st15{fill:#455B82;}
+	.st16{fill:#5882CC;}
+	.st17{fill:#2E788A;}
+	.st18{fill:#44A4C2;}
+	.st19{fill:#7AE6FF;}
+	.st20{fill:none;stroke:#231F20;stroke-miterlimit:10;}
+	.st21{fill:#9F5B8B;}
+	.st22{fill:#FF96B2;}
+	.st23{fill:#B86144;}
 </style>
 <g id="pyramid-l" class="st0">
 	<g class="st1">
@@ -41,50 +50,68 @@
 		</g>
 	</g>
 </g>
-<g id="cube-l" class="st0">
-	<path class="st7" d="M40,80"/>
+<g id="trunk-l">
+	<polygon class="st2" points="40,80 0,60 40,40 80,60 	"/>
+	<g>
+		<polygon class="st7" points="40,41.5 40,73.65 68.12,59.59 56.11,33.45 		"/>
+	</g>
+	<polygon class="st8" points="40,41.5 40,73.65 11.88,59.59 23.89,33.45 	"/>
+	<polygon class="st9" points="40,41.5 23.89,33.45 40,25.39 56.11,33.45 	"/>
+</g>
+<g id="trunk-s" class="st0">
 	<g class="st1">
 		<polygon class="st2" points="40,80 0,60 40,40 80,60 		"/>
 		<g>
-			<polygon class="st8" points="40,45.51 40,73.65 68.12,59.59 68.12,31.45 			"/>
+			<polygon class="st10" points="40,53.5 40,73.65 68.12,59.59 56.11,45.45 			"/>
 		</g>
-		<polygon class="st5" points="40,45.51 40,73.65 11.88,59.59 11.88,31.45 		"/>
-		<polygon class="st6" points="40,45.51 11.88,31.45 40,17.39 68.12,31.45 		"/>
+		<polygon class="st11" points="40,53.5 40,73.65 11.88,59.59 23.89,45.45 		"/>
+		<polygon class="st12" points="40,53.5 23.89,45.45 40,37.39 56.11,45.45 		"/>
+	</g>
+</g>
+<g id="cube-l" class="st0">
+	<path class="st13" d="M40,80"/>
+	<g class="st1">
+		<polygon class="st2" points="40,80 0,60 40,40 80,60 		"/>
+		<g>
+			<polygon class="st14" points="40,45.51 40,73.65 68.12,59.59 68.12,31.45 			"/>
+		</g>
+		<polygon class="st15" points="40,45.51 40,73.65 11.88,59.59 11.88,31.45 		"/>
+		<polygon class="st16" points="40,45.51 11.88,31.45 40,17.39 68.12,31.45 		"/>
 	</g>
 </g>
 <g id="cube-s" class="st0">
 	<g class="st1">
 		<polygon class="st2" points="40.04,80 0.04,60 40.04,40 80.04,60 		"/>
 		<g>
-			<polygon class="st9" points="40.04,32.27 40.04,73.63 68.12,59.6 68.12,46.31 			"/>
+			<polygon class="st17" points="40.04,32.27 40.04,73.63 68.12,59.6 68.12,46.31 			"/>
 		</g>
-		<polygon class="st10" points="40.04,32.27 40.04,73.63 11.97,59.6 11.97,46.31 		"/>
-		<polygon class="st11" points="40.04,60.34 11.97,46.31 40.04,32.27 68.12,46.31 		"/>
+		<polygon class="st18" points="40.04,32.27 40.04,73.63 11.97,59.6 11.97,46.31 		"/>
+		<polygon class="st19" points="40.04,60.34 11.97,46.31 40.04,32.27 68.12,46.31 		"/>
 	</g>
 </g>
-<g id="sphere-s">
-	<g>
+<g id="sphere-s" class="st0">
+	<g class="st1">
 		<polygon class="st2" points="40,80 0,60 40,40 80,60 		"/>
-		<path class="st12" d="M40,45.11"/>
-		<path class="st13" d="M40,57.42c-13.8,0-24.99-5.59-24.99-12.5C15,58.72,26.19,69.91,40,69.91s24.99-11.19,24.99-24.99
+		<path class="st20" d="M40,45.11"/>
+		<path class="st21" d="M40,57.42c-13.8,0-24.99-5.59-24.99-12.5C15,58.72,26.19,69.91,40,69.91s24.99-11.19,24.99-24.99
 			C64.99,51.82,53.8,57.42,40,57.42z"/>
 		<g>
-			<ellipse class="st14" cx="40" cy="44.92" rx="24.99" ry="12.5"/>
+			<ellipse class="st22" cx="40" cy="44.92" rx="24.99" ry="12.5"/>
 		</g>
 	</g>
 </g>
 <g id="sphere-l" class="st0">
 	<g class="st1">
 		<polygon class="st2" points="40,80 0,60 40,40 80,60 		"/>
-		<path class="st12" d="M40,45.11"/>
-		<path class="st3" d="M40,57.42c-13.8,0-24.99-5.59-24.99-12.5C15,58.72,26.19,69.91,40,69.91s24.99-11.19,24.99-24.99
+		<path class="st20" d="M40,45.11"/>
+		<path class="st23" d="M40,57.42c-13.8,0-24.99-5.59-24.99-12.5C15,58.72,26.19,69.91,40,69.91s24.99-11.19,24.99-24.99
 			C64.99,51.82,53.8,57.42,40,57.42z"/>
-		<path class="st4" d="M40,19.93C26.19,19.93,15,31.27,15,45.25C15,52.24,26.19,57.91,40,57.91c13.8,0,24.99-5.67,24.99-12.66
+		<path class="st3" d="M40,19.93C26.19,19.93,15,31.27,15,45.25C15,52.24,26.19,57.91,40,57.91c13.8,0,24.99-5.67,24.99-12.66
 			C64.99,31.27,53.8,19.93,40,19.93z"/>
 	</g>
 </g>
-<g id="Layer_7">
-	<g id="UHcHBZ.tif">
+<g id="Layer_7" class="st0">
+	<g id="UHcHBZ.tif" class="st1">
 		
 			<image style="overflow:visible;" width="328" height="128" id="Layer_0_1_" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAACBCAYAAACmcfPGAAAACXBIWXMAAA7qAAAO6gGjimNxAAAA
 GXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAACzpJREFUeNrs3U9sHGcZx/HHsSlu
