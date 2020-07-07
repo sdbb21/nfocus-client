@@ -3,20 +3,24 @@ import Card from "react-bootstrap/Card";
 import ScoreRow from "../../components/Scores/ScoreRow";
 import { useDispatch, useSelector } from "react-redux";
 import { getScores } from "../../store/score/actions";
-import { selectScores } from "../../store/score/selectors";
+import { selectScoresByUserId } from "../../store/score/selectors";
 import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { selectUser } from "../../store/user/selectors";
 
 export default function SignUp() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { id } = useParams();
+  const user = useSelector(selectUser);
+  const userScores = useSelector(selectScoresByUserId(parseInt(id)));
 
-  const allScores = useSelector(selectScores);
-
+  console.log("This is ID:", id, user.id);
   useEffect(() => {
     dispatch(getScores());
   }, [dispatch]);
 
-  return (
+  return userScores ? (
     <div>
       <Card border="dark">
         <div>
@@ -39,7 +43,7 @@ export default function SignUp() {
               </tr>
             </thead>
             <tbody>
-              {allScores.map((score, i) => (
+              {userScores.map((score, i) => (
                 <ScoreRow
                   key={score.id}
                   id={score.id}
@@ -53,5 +57,7 @@ export default function SignUp() {
         </div>
       </Card>
     </div>
+  ) : (
+    <p>Loading</p>
   );
 }

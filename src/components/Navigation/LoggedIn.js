@@ -9,16 +9,11 @@ import NavbarItem from "./NavbarItem";
 export default function LoggedIn() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  //   const startAuctionControl = user.isArtist ? (
-  //     <NavbarItem path="/auction" linkText="Start Auction" />
-  //   ) : (
-  //     ""
-  //   );
-
+  const userUrl = `/highscores/${user.id}`;
   return (
     <>
-      {/* {startAuctionControl} */}
-      <Nav.Item style={{ padding: ".5rem 1rem" }}>{user.email}</Nav.Item>
+      <NavbarItem path={userUrl} linkText="My Highscores" />
+      <Nav.Item style={{ padding: ".5rem 1rem" }}>{user.name}</Nav.Item>
       <Button onClick={() => dispatch(logOut())}>Logout</Button>
     </>
   );
