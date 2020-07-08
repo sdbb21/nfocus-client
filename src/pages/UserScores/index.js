@@ -8,6 +8,7 @@ import { selectScoresByUserId } from "../../store/score/selectors";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { selectUser } from "../../store/user/selectors";
+import "./style.css";
 
 export default function SignUp() {
   const dispatch = useDispatch();
@@ -22,8 +23,8 @@ export default function SignUp() {
   }, [dispatch]);
 
   return userScores ? (
-    <div>
-      <Card border="dark">
+    <div className="MainContainer">
+      <div className="CardContainer col-6 p-3">
         <div>
           <h3>
             {" "}
@@ -35,7 +36,7 @@ export default function SignUp() {
               🤑
             </span>
           </h3>
-          <table className="table table-striped table-bordered">
+          <table className="table table-striped table-dark table-bordered">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -44,7 +45,7 @@ export default function SignUp() {
               </tr>
             </thead>
             <tbody>
-              {userScores.map((score, i) => (
+              {userScores.slice(0, 5).map((score, i) => (
                 <ScoreRow
                   key={score.id}
                   id={score.id}
@@ -56,7 +57,7 @@ export default function SignUp() {
             </tbody>
           </table>
         </div>
-      </Card>
+      </div>
     </div>
   ) : (
     <p>Loading</p>

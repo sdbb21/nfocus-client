@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getScores } from "../../store/score/actions";
 import { selectScores } from "../../store/score/selectors";
 import { useHistory } from "react-router-dom";
+import "./style.css";
 
 export default function SignUp() {
   const dispatch = useDispatch();
@@ -16,9 +17,9 @@ export default function SignUp() {
     dispatch(getScores());
   }, [dispatch]);
 
-  return (
-    <div>
-      <Card border="dark">
+  return allScores ? (
+    <div className="MainContainer">
+      <div className="CardContainer col-6 p-3">
         <div>
           <h3>
             {" "}
@@ -30,7 +31,7 @@ export default function SignUp() {
               🤑
             </span>
           </h3>
-          <table className="table table-striped table-bordered">
+          <table className="table table-striped table-dark table-bordered">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -39,19 +40,22 @@ export default function SignUp() {
               </tr>
             </thead>
             <tbody>
-              {allScores.map((score, i) => (
+              {allScores.slice(0, 10).map((score, i) => (
                 <ScoreRow
                   key={score.id}
                   id={score.id}
                   position={i}
                   score={score.score}
                   name={score.user.name}
+                  top10={true}
                 />
               ))}
             </tbody>
           </table>
         </div>
-      </Card>
+      </div>
     </div>
+  ) : (
+    <p>Loading</p>
   );
 }

@@ -6,7 +6,11 @@ import { selectToken } from "../../store/user/selectors";
 import { postScore } from "../../store/score/actions";
 import { useHistory } from "react-router-dom";
 import Board from "../../components/Game/Board";
-import TimeBar from "../../components/Game/TimeBar";
+import MistakeBar from "../../components/GameUI/MistakeBar";
+import TimeBar from "../../components/GameUI/TimeBar";
+import ScoreBar from "../../components/GameUI/ScoreBar";
+import MessageToPlayer from "../../components/GameUI/MessageToPlayer";
+import GameOver from "../../components/GameUI/GameOver";
 
 import Levels from "./levels.json";
 import _ from "lodash";
@@ -84,14 +88,13 @@ export default function GameScreen() {
   }
 
   function gameOver() {
-    if (mistakes === 1) {
+    if (mistakes === 3) {
       setIsPlaying(false);
       setCurrentWave(0);
       setCurrentLevel(0);
       if (token && score > 0) {
         dispatch(postScore(parseInt(score), parseInt(user.id)));
       }
-      history.push(`/highscores/${user.id}`);
     }
   }
 
@@ -232,14 +235,24 @@ export default function GameScreen() {
       <button onClick={(e) => checkPlayerAnswer("none")}>No Match</button>
     </div>
   ) : (
-    <TimeBar animDuration={delay} />
+    <div>
+      <TimeBar animDuration={delay} />
+    </div>
   );
 
-  if (piecesStateArray.length > 0 && piecesStateArray.length < nBack + 1) {
+  //Renders
+
+  if (
+    piecesStateArray.length > 0 &&
+    piecesStateArray.length < nBack + 1 &&
+    mistakes < 3
+  ) {
     return (
       <div className="MainContainer">
         <div className="GameHeader">
-          <h3>Prepare to play {user.name}</h3>
+          <MessageToPlayer
+            message={`Prepare to start, ${user.name || "Player 1"}`}
+          />
         </div>
         <div className="Gameboard">
           <Board piecesArray={piecesStateArray[piecesStateArray.length - 1]} />
@@ -256,24 +269,22 @@ export default function GameScreen() {
     );
   }
 
-  if (piecesStateArray.length === nBack + 1 && mistakes < 1) {
+  if (piecesStateArray.length === nBack + 1 && mistakes < 3) {
     return (
       <div className="MainContainer">
         <div className="GameHeader">
-          <h3>
-            Score: {score} Level: {currentLevel + 1} Wave: {currentWave}
-          </h3>
+          <MistakeBar value={mistakes} />
+          <ScoreBar value={score} />
         </div>
         <div className="Gameboard">
           <Board piecesArray={piecesStateArray[nBack]} />
-
           <div className="SoundPlayer">
             <SoundPlayer soundType={soundStateArray[nBack]} />
           </div>
         </div>
         <div className="GameFooter">
           <div>{userInput}</div>
-          <h1>{messageToPlayer}</h1>
+          <MessageToPlayer message={messageToPlayer} />
         </div>
       </div>
     );
@@ -281,9 +292,10 @@ export default function GameScreen() {
 
   if (mistakes === 3) {
     return (
-      <div className="Gameboard">
-        <Board piecesArray={[]} />
-        <h1>You Lose</h1>
+      <div className="MainContainer">
+        <div className="Gameboard">
+          <GameOver message="Game Over" />
+        </div>
       </div>
     );
   }

@@ -1,0 +1,23 @@
+.MainContainer {
+  background: rgb(30, 31, 36);
+  background: radial-gradient(
+    circle,
+    rgba(30, 31, 36, 1) 0%,
+    rgba(5, 27, 41, 1) 100%
+  );
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+}
+
+.CardContainer {
+  position: flex;
+  align-content: center;
+  padding-top: 3em;
+  margin: 0 auto;
+  color: white;
+}
+
+.CardContainer table {
+  color: white;
+}

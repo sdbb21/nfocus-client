@@ -13,30 +13,43 @@
 .GameHeader {
   width: 900px;
   height: 50px;
-  /* border: 1px solid orange; */
   margin: 0 auto;
+  padding-top: 10px;
 }
 
 .Gameboard {
   position: relative;
   width: 900px;
-  height: 500px;
+  height: 480px;
   padding-top: 3em;
   margin: 0 auto;
-  /* background: linear-gradient(226deg, #000000, #232a3a);
-  background-size: 100% 100%; */
-  /* border: 1px solid red; */
 }
 
 .SoundPlayer {
   visibility: hidden;
 }
 .UserInput {
+  position: relative;
   width: 900px;
-  height: 100px;
-  /* border: 1px solid green; */
-  padding: 3em;
+  height: 50px;
   margin: 0 auto;
+}
+
+.UserInput button {
+  background-color: #12222b;
+  border: 2px solid #17737e;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #17737e;
+  margin: 0 10px 0 10px;
+  width: 100px;
+  height: 40px;
+  z-index: 99;
+}
+.UserInput button:hover {
+  background-color: #17737e;
+
+  color: #12222b;
 }
 
 @keyframes AnimationName {
