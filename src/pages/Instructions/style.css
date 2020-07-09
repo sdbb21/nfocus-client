@@ -1,0 +1,40 @@
+.MainContainer {
+  background: rgb(30, 31, 36);
+  background: radial-gradient(circle, #1e1f24 0%, #051b29 100%);
+  padding-top: 5vh;
+  height: 95vh;
+  width: 100vw;
+  position: fixed;
+}
+.Screenshot {
+  margin: 10px;
+  border: 2px solid #339999;
+}
+
+.InstructionsContainer {
+  position: relative;
+  width: 650px;
+  margin: 20px auto;
+}
+
+.InstructionsContainer p {
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.button {
+  background-color: #123239;
+  border: 2px solid #339999;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #339999;
+  margin: 0 10px 0 10px;
+  width: 200px;
+  height: 40px;
+  margin: 5px;
+}
+.button:hover {
+  background-color: #339999;
+  color: #123239;
+  transition: ease 0.5s;
+}

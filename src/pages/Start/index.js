@@ -15,7 +15,7 @@ export default function Start() {
         <Link to={`/game`}>
           <button className="BackButton">Start Game</button>
         </Link>
-        <Link to={`/howtoplay`}>
+        <Link to={`/instructions`}>
           <button className="BackButton">How to Play?</button>
         </Link>
         <Link to={`/highscores`}>

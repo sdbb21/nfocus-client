@@ -12,6 +12,7 @@ import StartPage from "./pages/Start";
 import GameScreen from "./pages/GameScreen";
 import HighScores from "./pages/HighScores";
 import UserScores from "./pages/UserScores";
+import Instructions from "./pages/Instructions";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
@@ -32,6 +33,7 @@ function App() {
       {isLoading ? <Loading /> : null}
       <Switch>
         <Route exact path="/" component={StartPage} />
+        <Route path="/instructions" component={Instructions} />
         <Route path="/game" component={GameScreen} />
         <Route path="/highscores/:id" component={UserScores} />
         <Route path="/highscores" component={HighScores} />
