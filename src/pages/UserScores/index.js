@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Moment from "moment";
-
+import { Link } from "react-router-dom";
 import ScoreRow from "../../components/Scores/ScoreRow";
 import { useDispatch, useSelector } from "react-redux";
 import { getScores } from "../../store/score/actions";
@@ -50,6 +50,9 @@ export default function SignUp() {
             </tbody>
           </table>
         </div>
+        <Link to={`/`}>
+          <button className="BackButton">Back to Home Page</button>
+        </Link>
       </div>
     </div>
   ) : (

@@ -9,6 +9,7 @@ export default function Start() {
     <div className="MainContainer">
       <div className="ImgContainer">
         <img src={LogonFocus} alt="logo" />
+        <h2>A mind blowing game.</h2>
       </div>
       <div className="MenuContainer">
         <Link to={`/game`}>
@@ -20,6 +21,9 @@ export default function Start() {
         <Link to={`/highscores`}>
           <button className="BackButton">Highscores</button>
         </Link>
+      </div>
+      <div className="Credits">
+        <h5>Created by Sebastian Baez</h5>
       </div>
     </div>
   );
