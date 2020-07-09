@@ -1,10 +1,11 @@
 import "./style.css";
 import React, { useState, useEffect, useRef } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../store/user/selectors";
 import { selectToken } from "../../store/user/selectors";
 import { postScore } from "../../store/score/actions";
-import { useHistory } from "react-router-dom";
+import Loading from "../../components/Loading";
 import Board from "../../components/Game/Board";
 import MistakeBar from "../../components/GameUI/MistakeBar";
 import TimeBar from "../../components/GameUI/TimeBar";
@@ -37,11 +38,11 @@ function useInterval(callback, delay) {
 }
 
 const nBack = 2;
+const delay = 5000;
 let piecesStateArray = [];
 let soundStateArray = [];
 let isFigureMatch = false;
 let isSoundMatch = false;
-const delay = 5000;
 
 export default function GameScreen() {
   const [currentWave, setCurrentWave] = useState(0);
@@ -51,13 +52,20 @@ export default function GameScreen() {
 
   const [mistakes, setMistakes] = useState(0);
   const [messageToPlayer, setMessageToPlayer] = useState("");
+  const history = useHistory();
 
   const user = useSelector(selectUser);
   const token = useSelector(selectToken);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {}, []);
+
+  history.listen((location, action) => {
+    piecesStateArray = [];
+    soundStateArray = [];
+    isFigureMatch = false;
+    isSoundMatch = false;
+  });
 
   useInterval(
     () => {
@@ -89,7 +97,7 @@ export default function GameScreen() {
 
   function gameOver() {
     if (mistakes === 3) {
-      setIsPlaying(false);
+      setIsPlaying(true);
       setCurrentWave(0);
       setCurrentLevel(0);
       if (token && score > 0) {
@@ -227,6 +235,13 @@ export default function GameScreen() {
     }
   }
 
+  function resetGame() {
+    piecesStateArray = [];
+    soundStateArray = [];
+    isFigureMatch = false;
+    isSoundMatch = false;
+  }
+
   const userInput = isPlaying ? (
     <div className="UserInput">
       <button onClick={(e) => checkPlayerAnswer("figure")}>Figure</button>
@@ -291,17 +306,23 @@ export default function GameScreen() {
   }
 
   if (mistakes === 3) {
+    resetGame();
     return (
       <div className="MainContainer">
-        <div className="Gameboard">
-          <GameOver message="Game Over" />
-        </div>
+        <GameOver message="Game Over" />
+
+        <Link to={`/`}>
+          <button className="BackButton">Homepage</button>
+        </Link>
+        <Link to={`/highscores`}>
+          <button className="BackButton">Highscores</button>
+        </Link>
       </div>
     );
   }
   return (
     <div className="MainContainer">
-      <h1>Loading...</h1>
+      <Loading />
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import pieceHighlight from "../../svg/piecelight.svg";
 import pieceNormal from "../../svg/piecedark.svg";
 import "./BoardPiece.css";
 

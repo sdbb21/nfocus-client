@@ -1,5 +1,5 @@
 import React from "react";
-import { Howl, Howler } from "howler";
+import { Howl } from "howler";
 import Sound0 from "../../mp3/sound0.mp3";
 import Sound1 from "../../mp3/sound1.mp3";
 import Sound2 from "../../mp3/sound2.mp3";

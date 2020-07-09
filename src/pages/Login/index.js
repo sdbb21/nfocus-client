@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
 import { login } from "../../store/user/actions";
 import { selectToken } from "../../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
@@ -59,9 +58,9 @@ export default function SignUp() {
             />
           </Form.Group>
           <Form.Group className="mt-5">
-            <Button variant="btn btn-info" type="submit" onClick={submitForm}>
+            <button className="LoginButton" type="submit" onClick={submitForm}>
               Log in
-            </Button>
+            </button>
           </Form.Group>
           <Link className="Link" to="/signup" style={{ textAlign: "center" }}>
             Click here to sign up

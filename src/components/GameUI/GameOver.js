@@ -1,8 +1,10 @@
 import React from "react";
-import "./MessageToPlayer.css";
+
+import "./GameOver.css";
+
 const GameOver = (props) => {
   return props.message ? (
-    <div className="MessageContainer">
+    <div className="GameOverContainer">
       <h1>{props.message}</h1>
     </div>
   ) : (

@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Moment from "moment";
-import Card from "react-bootstrap/Card";
+
 import ScoreRow from "../../components/Scores/ScoreRow";
 import { useDispatch, useSelector } from "react-redux";
 import { getScores } from "../../store/score/actions";
 import { selectScoresByUserId } from "../../store/score/selectors";
-import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { selectUser } from "../../store/user/selectors";
 import "./style.css";
 
 export default function SignUp() {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { id } = useParams();
   const user = useSelector(selectUser);
   const userScores = useSelector(selectScoresByUserId(parseInt(id)));
