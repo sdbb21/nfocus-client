@@ -49,6 +49,7 @@ export default function GameScreen() {
   const [currentLevel, setCurrentLevel] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [score, setScore] = useState(0);
+  const [playerWon, setPlayerWon] = useState(false);
 
   const [mistakes, setMistakes] = useState(0);
   const [messageToPlayer, setMessageToPlayer] = useState("");
@@ -83,11 +84,13 @@ export default function GameScreen() {
     if (currentWave < Levels.allLevels[currentLevel].allWaves.length - 1) {
       setCurrentWave(currentWave + 1);
     } else if (currentLevel < Levels.allLevels.length - 1) {
+      piecesStateArray = [];
+      soundStateArray = [];
       setCurrentWave(0);
       setCurrentLevel(currentLevel + 1);
     } else {
       //Game Over
-      setMessageToPlayer("You Win");
+      setPlayerWon(true);
     }
     //Runs the cycle until the array is full
     if (piecesStateArray.length === nBack + 1) {
@@ -248,7 +251,7 @@ export default function GameScreen() {
 
   const userInput = isPlaying ? (
     <div className="UserInput">
-      <button onClick={(e) => checkPlayerAnswer("figure")}>Figure</button>
+      <button onClick={(e) => checkPlayerAnswer("figure")}>Figures</button>
       <button onClick={(e) => checkPlayerAnswer("both")}>Both</button>
       <button onClick={(e) => checkPlayerAnswer("sound")}>Sound</button>
       <button onClick={(e) => checkPlayerAnswer("none")}>No Match</button>
@@ -309,7 +312,7 @@ export default function GameScreen() {
     );
   }
 
-  if (mistakes === 3) {
+  if (mistakes === 3 || playerWon) {
     resetGame();
     return (
       <div className="MainContainer">
