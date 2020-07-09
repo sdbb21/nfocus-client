@@ -242,6 +242,10 @@ export default function GameScreen() {
     isSoundMatch = false;
   }
 
+  function playAgain() {
+    window.location.reload();
+  }
+
   const userInput = isPlaying ? (
     <div className="UserInput">
       <button onClick={(e) => checkPlayerAnswer("figure")}>Figure</button>
@@ -309,10 +313,15 @@ export default function GameScreen() {
     resetGame();
     return (
       <div className="MainContainer">
-        <GameOver message="Game Over" />
+        <GameOver message="Game Over" showScore={score} />
 
         <Link to={`/`}>
           <button className="BackButton">Homepage</button>
+        </Link>
+        <Link to={`/game`}>
+          <button onClick={(e) => playAgain(e)} className="BackButton">
+            Try Again
+          </button>
         </Link>
         <Link to={`/highscores`}>
           <button className="BackButton">Highscores</button>
