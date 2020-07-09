@@ -49,18 +49,6 @@
 }
 .UserInput button:hover {
   background-color: #17737e;
-
+  transition: ease 0.5s;
   color: #12222b;
-}
-
-@keyframes AnimationName {
-  0% {
-    background-position: 0% 90%;
-  }
-  50% {
-    background-position: 100% 11%;
-  }
-  100% {
-    background-position: 0% 90%;
-  }
 }

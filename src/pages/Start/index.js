@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import LogonFocus from "../../svg/nFocusLogo.svg";
 
 import "./style.css";
 
 export default function Start() {
   return (
     <div className="MainContainer">
-      <h1>LOGO</h1>
+      <div className="ImgContainer">
+        <img src={LogonFocus} alt="logo" />
+      </div>
       <div className="MenuContainer">
         <Link to={`/game`}>
           <button className="BackButton">Start Game</button>

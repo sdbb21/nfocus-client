@@ -9,7 +9,11 @@
   width: 100vw;
   position: fixed;
 }
-
+.Top5BoardHeader {
+  position: relative;
+  width: 900px;
+  margin: 20px auto;
+}
 .CardContainer {
   position: flex;
   align-content: center;

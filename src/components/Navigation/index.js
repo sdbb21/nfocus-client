@@ -7,7 +7,7 @@ import { selectToken } from "../../store/user/selectors";
 import NavbarItem from "./NavbarItem";
 import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
-import "./style.css";
+import LogonFocus from "../../svg/nFocusLogoBar.svg";
 
 export default function Navigation() {
   const token = useSelector(selectToken);
@@ -15,9 +15,9 @@ export default function Navigation() {
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
 
   return (
-    <Navbar className="NavBarMod" bg="dark" expand="lg">
+    <Navbar bg="dark" expand="lg">
       <Navbar.Brand as={NavLink} to="/">
-        nFocus
+        <img src={LogonFocus} style={{ height: "40px" }} alt="logo" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

@@ -22,18 +22,13 @@ export default function SignUp() {
 
   return userScores ? (
     <div className="MainContainer">
-      <div className="CardContainer col-6 p-3">
-        <div>
-          <h3>
-            {" "}
-            <span role="img" aria-label="bids">
-              🤑
-            </span>{" "}
-            Top 10{" "}
-            <span role="img" aria-label="bids">
-              🤑
-            </span>
-          </h3>
+      <div>
+        <h3>
+          <div className="Top5BoardHeader">
+            <h2>{user.name} Top 5 Highscores</h2>
+          </div>
+        </h3>
+        <div className="ScoreBoard">
           <table className="table table-striped table-dark table-bordered">
             <thead>
               <tr>
