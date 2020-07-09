@@ -25,9 +25,10 @@ export default function Start() {
           <strong> If you fail 3 times, the game is over.</strong>
         </p>
       </div>
-      <div className="Credits">
-        <h5>Created by Sebastian Baez</h5>
-      </div>
+
+      <Link to={`/`}>
+        <button className="BackButton">Back to Home Page</button>
+      </Link>
     </div>
   );
 }
