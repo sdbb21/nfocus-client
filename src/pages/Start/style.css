@@ -1,0 +1,36 @@
+.MainContainer {
+  background: rgb(30, 31, 36);
+  background: radial-gradient(
+    circle,
+    rgba(30, 31, 36, 1) 0%,
+    rgba(5, 27, 41, 1) 100%
+  );
+  padding-top: 5vh;
+  height: 95vh;
+  width: 100vw;
+  position: fixed;
+}
+.ImgContainer {
+  width: 50vw;
+  margin: 10vh auto;
+}
+.MenuContainer {
+  width: 200px;
+  margin: 10px auto;
+}
+
+.MenuContainer button {
+  background-color: #12222b;
+  border: 2px solid #17737e;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #17737e;
+  margin: 0 10px 0 10px;
+  width: 200px;
+  height: 40px;
+  margin: 5px;
+}
+.MenuContainer button:hover {
+  background-color: #17737e;
+  color: #12222b;
+}

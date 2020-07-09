@@ -1,0 +1,11 @@
+.MessageContainer {
+  position: relative;
+  margin: 0px auto;
+  height: 50px;
+  width: 600px;
+  padding: 8px 15px;
+  background-color: #12222b;
+  border-radius: 5px;
+  color: #17737e;
+  font-style: italic;
+}

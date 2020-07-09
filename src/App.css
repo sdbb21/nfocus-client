@@ -2,27 +2,15 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar.navbar-expand-lg.navbar-light.bg-dark {
+  background-color: #17737e !important;
 }
+
 .navbar-light .navbar-brand {
-  color: white !important;
+  color: #12222b !important;
+  font-weight: bold;
 }
 .navbar-light .nav-link {
-  color: white !important;
-}
-
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: rgb(167, 16, 16);
-}
-
-.App-link {
-  color: #61dafb;
+  color: #12222b !important;
+  font-weight: bold;
 }

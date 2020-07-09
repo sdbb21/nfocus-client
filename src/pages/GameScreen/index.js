@@ -1,12 +1,17 @@
 import "./style.css";
 import React, { useState, useEffect, useRef } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../store/user/selectors";
 import { selectToken } from "../../store/user/selectors";
 import { postScore } from "../../store/score/actions";
-import { useHistory } from "react-router-dom";
+import Loading from "../../components/Loading";
 import Board from "../../components/Game/Board";
-import TimeBar from "../../components/Game/TimeBar";
+import MistakeBar from "../../components/GameUI/MistakeBar";
+import TimeBar from "../../components/GameUI/TimeBar";
+import ScoreBar from "../../components/GameUI/ScoreBar";
+import MessageToPlayer from "../../components/GameUI/MessageToPlayer";
+import GameOver from "../../components/GameUI/GameOver";
 
 import Levels from "./levels.json";
 import _ from "lodash";
@@ -33,11 +38,11 @@ function useInterval(callback, delay) {
 }
 
 const nBack = 2;
+const delay = 5000;
 let piecesStateArray = [];
 let soundStateArray = [];
 let isFigureMatch = false;
 let isSoundMatch = false;
-const delay = 5000;
 
 export default function GameScreen() {
   const [currentWave, setCurrentWave] = useState(0);
@@ -47,13 +52,20 @@ export default function GameScreen() {
 
   const [mistakes, setMistakes] = useState(0);
   const [messageToPlayer, setMessageToPlayer] = useState("");
+  const history = useHistory();
 
   const user = useSelector(selectUser);
   const token = useSelector(selectToken);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {}, []);
+
+  history.listen((location, action) => {
+    piecesStateArray = [];
+    soundStateArray = [];
+    isFigureMatch = false;
+    isSoundMatch = false;
+  });
 
   useInterval(
     () => {
@@ -84,14 +96,13 @@ export default function GameScreen() {
   }
 
   function gameOver() {
-    if (mistakes === 1) {
-      setIsPlaying(false);
+    if (mistakes === 3) {
+      setIsPlaying(true);
       setCurrentWave(0);
       setCurrentLevel(0);
       if (token && score > 0) {
         dispatch(postScore(parseInt(score), parseInt(user.id)));
       }
-      history.push(`/highscores/${user.id}`);
     }
   }
 
@@ -224,6 +235,13 @@ export default function GameScreen() {
     }
   }
 
+  function resetGame() {
+    piecesStateArray = [];
+    soundStateArray = [];
+    isFigureMatch = false;
+    isSoundMatch = false;
+  }
+
   const userInput = isPlaying ? (
     <div className="UserInput">
       <button onClick={(e) => checkPlayerAnswer("figure")}>Figure</button>
@@ -232,14 +250,24 @@ export default function GameScreen() {
       <button onClick={(e) => checkPlayerAnswer("none")}>No Match</button>
     </div>
   ) : (
-    <TimeBar animDuration={delay} />
+    <div>
+      <TimeBar animDuration={delay} />
+    </div>
   );
 
-  if (piecesStateArray.length > 0 && piecesStateArray.length < nBack + 1) {
+  //Renders
+
+  if (
+    piecesStateArray.length > 0 &&
+    piecesStateArray.length < nBack + 1 &&
+    mistakes < 3
+  ) {
     return (
       <div className="MainContainer">
         <div className="GameHeader">
-          <h3>Prepare to play {user.name}</h3>
+          <MessageToPlayer
+            message={`Prepare to start, ${user.name || "Player 1"}`}
+          />
         </div>
         <div className="Gameboard">
           <Board piecesArray={piecesStateArray[piecesStateArray.length - 1]} />
@@ -256,40 +284,45 @@ export default function GameScreen() {
     );
   }
 
-  if (piecesStateArray.length === nBack + 1 && mistakes < 1) {
+  if (piecesStateArray.length === nBack + 1 && mistakes < 3) {
     return (
       <div className="MainContainer">
         <div className="GameHeader">
-          <h3>
-            Score: {score} Level: {currentLevel + 1} Wave: {currentWave}
-          </h3>
+          <MistakeBar value={mistakes} />
+          <ScoreBar value={score} />
         </div>
         <div className="Gameboard">
           <Board piecesArray={piecesStateArray[nBack]} />
-
           <div className="SoundPlayer">
             <SoundPlayer soundType={soundStateArray[nBack]} />
           </div>
         </div>
         <div className="GameFooter">
           <div>{userInput}</div>
-          <h1>{messageToPlayer}</h1>
+          <MessageToPlayer message={messageToPlayer} />
         </div>
       </div>
     );
   }
 
   if (mistakes === 3) {
+    resetGame();
     return (
-      <div className="Gameboard">
-        <Board piecesArray={[]} />
-        <h1>You Lose</h1>
+      <div className="MainContainer">
+        <GameOver message="Game Over" />
+
+        <Link to={`/`}>
+          <button className="BackButton">Homepage</button>
+        </Link>
+        <Link to={`/highscores`}>
+          <button className="BackButton">Highscores</button>
+        </Link>
       </div>
     );
   }
   return (
     <div className="MainContainer">
-      <h1>Loading...</h1>
+      <Loading />
     </div>
   );
 }

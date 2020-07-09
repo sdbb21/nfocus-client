@@ -9,34 +9,14 @@
   height: 95vh;
   width: 100vw;
   position: fixed;
+  color: white;
 }
 
-.GameHeader {
-  width: 900px;
-  height: 50px;
-  margin: 0 auto;
-  padding-top: 10px;
+.Link {
+  color: #17737e;
 }
 
-.Gameboard {
-  position: relative;
-  width: 900px;
-  height: 480px;
-  padding-top: 3em;
-  margin: 0 auto;
-}
-
-.SoundPlayer {
-  visibility: hidden;
-}
-.UserInput {
-  position: relative;
-  width: 900px;
-  height: 50px;
-  margin: 0 auto;
-}
-
-.UserInput button {
+.SignupButton {
   background-color: #12222b;
   border: 2px solid #17737e;
   border-radius: 5px;
@@ -47,8 +27,8 @@
   height: 40px;
   z-index: 99;
 }
-.UserInput button:hover {
+.SignupButton:hover {
   background-color: #17737e;
-  transition: ease 0.5s;
+
   color: #12222b;
 }

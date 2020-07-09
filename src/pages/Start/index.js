@@ -1,23 +1,26 @@
-import React, { useState, useEffect } from "react";
-import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
+import LogonFocus from "../../svg/nFocusLogo.svg";
 
-export default function SignUp() {
-  const dispatch = useDispatch();
-  const history = useHistory();
+import "./style.css";
 
-  useEffect(() => {}, [history]);
-
+export default function Start() {
   return (
-    <div>
-      <Container>
-        <h1>LOGO</h1>
-        <h3>Start Game</h3>
-        <h3>Instructions</h3>
-        <h3>High Scores</h3>
-      </Container>
+    <div className="MainContainer">
+      <div className="ImgContainer">
+        <img src={LogonFocus} alt="logo" />
+      </div>
+      <div className="MenuContainer">
+        <Link to={`/game`}>
+          <button className="BackButton">Start Game</button>
+        </Link>
+        <Link to={`/howtoplay`}>
+          <button className="BackButton">How to Play?</button>
+        </Link>
+        <Link to={`/highscores`}>
+          <button className="BackButton">Highscores</button>
+        </Link>
+      </div>
     </div>
   );
 }

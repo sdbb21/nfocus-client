@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Moment from "moment";
-import Card from "react-bootstrap/Card";
+
 import ScoreRow from "../../components/Scores/ScoreRow";
 import { useDispatch, useSelector } from "react-redux";
 import { getScores } from "../../store/score/actions";
 import { selectScoresByUserId } from "../../store/score/selectors";
-import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { selectUser } from "../../store/user/selectors";
+import "./style.css";
 
 export default function SignUp() {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { id } = useParams();
   const user = useSelector(selectUser);
   const userScores = useSelector(selectScoresByUserId(parseInt(id)));
@@ -22,20 +21,15 @@ export default function SignUp() {
   }, [dispatch]);
 
   return userScores ? (
-    <div>
-      <Card border="dark">
-        <div>
-          <h3>
-            {" "}
-            <span role="img" aria-label="bids">
-              🤑
-            </span>{" "}
-            Top 10{" "}
-            <span role="img" aria-label="bids">
-              🤑
-            </span>
-          </h3>
-          <table className="table table-striped table-bordered">
+    <div className="MainContainer">
+      <div>
+        <h3>
+          <div className="Top5BoardHeader">
+            <h2>{user.name} Top 5 Highscores</h2>
+          </div>
+        </h3>
+        <div className="ScoreBoard">
+          <table className="table table-striped table-dark table-bordered">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -44,7 +38,7 @@ export default function SignUp() {
               </tr>
             </thead>
             <tbody>
-              {userScores.map((score, i) => (
+              {userScores.slice(0, 5).map((score, i) => (
                 <ScoreRow
                   key={score.id}
                   id={score.id}
@@ -56,7 +50,7 @@ export default function SignUp() {
             </tbody>
           </table>
         </div>
-      </Card>
+      </div>
     </div>
   ) : (
     <p>Loading</p>
