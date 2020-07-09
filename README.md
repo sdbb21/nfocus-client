@@ -1,68 +1,113 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# nFocus - A nBack based game
 
-## Available Scripts
+## Introduction
 
-In the project directory, you can run:
+nFocus is a memory game based on the Double [n-Back](https://en.wikipedia.org/wiki/n-back) performance task where the player is exposed in each round to a Visual and an Auditory stimulus at the same time. During each round, the player shall identify if one or both of these stimuli appeared in a n quantity of rounds before.
+The objective of nFocus is to provide the player an opportunity to use its concentration capacity, its [Working Memory](https://en.wikipedia.org/wiki/Working_memory) and [Fluid Intelligence](https://en.wikipedia.org/wiki/Fluid_and_crystallized_intelligence) through a playful and competitive experience.
 
-### `npm start`
+![Screenshot1](Images/nFocus0.png)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![Screenshot2](Images/nFocus1.png)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+![Screenshot3](Images/nFocus2.png)
 
-### `npm test`
+## Table of Contents
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [App Demo](#app-demo)
+- [Used Technologies](#used-technologies)
+- [Goals for this Project](#goals-for-this-project)
+- [User Stories](#user-stories)
+- [Wireframe](#wireframe)
+- [Data Model](#data-model)
+- [Concept](#concept)
+- [Interface](#interface)
+- [Audience](#audience)
+- [Bibliography](#bibliography)
 
-### `npm run build`
+## App Demo
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### You can see a working version [here]()
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Used Technologies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- React
+- Redux
+- React Bootstrap
+- CSS Animations
+- SVG graphics
+- Howler
+- Lodash
+- Axios
+- Express
+- Sequelize
 
-### `npm run eject`
+## Goals for this Project
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This project's main goal is to combine my Game Design and Graphic Design experience with the recently acquired knowledge at Codaisseur.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Create a game with React
+- Solving the _out-of-scope_ shortcommings of React by researching
+- Implementing Sound as a new technology
+- Showcasing my set of skills
+- Practicing the new knowledge
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## User Stories
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+As a User,
 
-## Learn More
+- I want to use my mind: nFocus will use your memory, focus and attention capacity.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- I want to see my progress: By creating a user account and login in, your score will be saved every time you play.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- I want to compare to other Users: Check your position and best score in the players' Top 10.
 
-### Code Splitting
+- I want to relax and concentrate: Its minimalist design and melodic sounds make nFocus a meditation-like experience.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Wireframe
 
-### Analyzing the Bundle Size
+![Wireframe](Images/wireframe.jpeg)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## Data Model
 
-### Making a Progressive Web App
+![Datamodel](Images/datamodel.jpeg)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+---
 
-### Advanced Configuration
+## Concept
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+The concept of nFocus was inspired by one the side effects suffered by social groups that live the day by day in a cultural convergence. These groups (in which I include myself) are able to perform several tasks at the same time in different mediums simultaneously thanks to their ability to “anchor” and “de-anchor” their attention easily. Although this is a desirable competence, by adding the stimulus overload to which we are exposed today (Visual and Auditory) we have decreased the duration of the [Attention Span](https://en.wikipedia.org/wiki/Attention_span) and also the ability to select and block external stimuli to our focal objective of the moment. [Some](http://youtu.be/y0hY5TYVv_s?t=5m10s) call this effect Acquired Attention Deficit Hyperactivity Disorder (AADHD).
+Considering myself a “victim” of this effect, I decided to investigate more on the subject and on methods that could help reduce this disorder, such as, for example, the [n-Back](https://en.wikipedia.org/wiki/N-back) exercise (Wayne Kirchner, 1958) and its audiovisual variant Dual n- Back (Susanne Jaeggi and company, 2003).
+In the exercise we see a figure on the screen in a certain position and we hear a sound, in this case a letter. In each series we must remember the position and sound **n number of series back** and compare them with the current one. If we find that one or both of them are repeated, we must indicate it by pressing the corresponding buttons on the screen. _See below:_
 
-### Deployment
+![Dual nBack](Images/dualnback.png)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+A [published study](http://www.pnas.org/content/early/2008/04/25/0801268105.full.pdf) by Jaeggi _et al._ shows that this exercise _could potentially_ improve [Working Memory](https://en.wikipedia.org/wiki/Working_memory) and [Fluid Intelligence](https://en.wikipedia.org/wiki/Fluid_and_crystallized_intelligence).
+So I decided to test the [Brain Workshop](http://brainworkshop.sourceforge.net/download.html) app. Although it is a replica of the original Jaeggi exercise, and it has a variety of options and configurations to adapt it to the user's taste and ability, its interface is concise and unfriendly, something that would definitely scare off the audience that I propose as a target.
 
-### `npm run build` fails to minify
+## Interface
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+With this and the aforementioned stimulus overload in mind, I opted for a simple, minimalist interface with the minimum UI elements in sight, which helps the player to focus on the task without being distracted during the course of each level. For this I took inspiration from games with minimalist aesthetics such as Lyne and Rymdkapsel.
+As an aid to stay focused, in addition to the visual aspect, as a rule players must restart the level if they interrupt the game for any reason.
+Where Brain Workshop fails to keep the user “hooked”, **nFocus** takes elements of casual games (simplicity and competition) and combines them with gameplay that requires their full attention, making it a novel and almost meditative experience.
+
+## Audience
+
+The audience targeted with this game is broad. Due to the simplicity of its presentation and the scalability of its complexity, **nFocus** can attract both adults or teenagers as a challenge or as a tool to counteract the effects of a day-to-day full of stimuli and audiovisual noise.
+**nFocus** is a non-violent game and it's devoid of any stereotype, and even so in the future the visual interface could be modified making it more attractive to a younger audience without the need to change the core of the game.
+
+## Bibliography
+
+### Concepts
+
+- Working Memory: (https://en.wikipedia.org/wiki/Working_memory)
+- Fluid Intelligence(https://en.wikipedia.org/wiki/Fluid_and_crystallized_intelligence)
+- Test N-Back: (https://en.wikipedia.org/wiki/n-back)
+- Attention Span:(https://en.wikipedia.org/wiki/Attention_span)
+
+### Articles & Talks
+
+- Siggelakis, Theo (2014) _Living with ADHD in the age of information and social media._ TEDxQuinnipiacU, Connecticut, USA. [Video](http://youtu.be/y0hY5TYVv_s)
+- Jaeggi, Buschkuehl, Jonides y Perrig (2008) _Improving fluid intelligence with training on working memory._ PNAS, USA. (www.pnas.org/content/early/2008/04/25/0801268105.full.pdf)
+- Cánovas, Guillermo (2015) _“Mamá: no puedo parar los pensamientos que me llegan a la cabeza”._ Kids and Teens Online Blog, Spain. (kidsandteensonline.com/2015/02/24/mama-no-puedo-parar-los-pensamientos-que-me-llegan-a-la-cabeza/)
+- Foster, Douglas (2013) _How to Rebuild an Attention Span._ The Atlantic, USA. (www.theatlantic.com/health/archive/2013/09/how-to-rebuild-an-attention-span/279326/)
+- Koster, Ralph (2013) _A Theory of Fun for Game Design (2nd Edition)._ O’Reilly, USA. (http://www.theoryoffun.com/)
