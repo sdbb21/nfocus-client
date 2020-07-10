@@ -14,6 +14,7 @@ The objective of nFocus is to provide the player an opportunity to use its conce
 ## Table of Contents
 
 - [App Demo](#app-demo)
+- [Backend Repository](#backend-repository)
 - [Used Technologies](#used-technologies)
 - [Goals for this Project](#goals-for-this-project)
 - [User Stories](#user-stories)
@@ -26,7 +27,11 @@ The objective of nFocus is to provide the player an opportunity to use its conce
 
 ## App Demo
 
-### You can see a working version 1.0 [here]()
+### You can see a working version 1.0 [here](https://nfocus.netlify.app/)
+
+## Backend Repository
+
+### You can see the backend repo [here](https://github.com/sdbb21/nfocus-server)
 
 ## Used Technologies
 
