@@ -84,8 +84,6 @@ export default function GameScreen() {
     if (currentWave < Levels.allLevels[currentLevel].allWaves.length - 1) {
       setCurrentWave(currentWave + 1);
     } else if (currentLevel < Levels.allLevels.length - 1) {
-      piecesStateArray = [];
-      soundStateArray = [];
       setCurrentWave(0);
       setCurrentLevel(currentLevel + 1);
     } else {
