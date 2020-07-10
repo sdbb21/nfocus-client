@@ -1,0 +1,10 @@
+.GameOverContainer {
+  position: relative;
+  margin: 10vh auto 3vh auto;
+  height: 200px;
+  width: 600px;
+  padding: 50px;
+  background-color: #123239;
+  border-radius: 5px;
+  color: #339999;
+}

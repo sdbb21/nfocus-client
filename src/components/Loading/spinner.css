@@ -1,0 +1,16 @@
+.loading_spinner {
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  color: #339999;
+  background: rgb(30, 31, 36);
+  background: radial-gradient(
+    circle,
+    rgba(30, 31, 36, 1) 0%,
+    rgba(5, 27, 41, 1) 100%
+  );
+}

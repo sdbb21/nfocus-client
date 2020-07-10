@@ -1,0 +1,39 @@
+.MainContainer {
+  background: rgb(30, 31, 36);
+  background: radial-gradient(
+    circle,
+    rgba(30, 31, 36, 1) 0%,
+    rgba(5, 27, 41, 1) 100%
+  );
+  padding-top: 5vh;
+  height: 95vh;
+  width: 100vw;
+  position: fixed;
+  color: #339999;
+}
+
+.Link {
+  color: #339999;
+}
+
+.Link:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.LoginButton {
+  background-color: #123239;
+  border: 2px solid #339999;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #339999;
+  margin: 0 10px 0 10px;
+  width: 100px;
+  height: 40px;
+  z-index: 99;
+}
+.LoginButton:hover {
+  background-color: #339999;
+  color: #123239;
+  transition: ease 0.5s;
+}

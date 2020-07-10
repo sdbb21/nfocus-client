@@ -1,0 +1,56 @@
+.MainContainer {
+  background: rgb(30, 31, 36);
+  background: radial-gradient(
+    circle,
+    rgba(30, 31, 36, 1) 0%,
+    rgba(5, 27, 41, 1) 100%
+  );
+  padding-top: 5vh;
+  height: 95vh;
+  width: 100vw;
+  position: fixed;
+}
+
+.GameHeader {
+  width: 900px;
+  height: 50px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+.Gameboard {
+  position: relative;
+  width: 900px;
+  height: 480px;
+  padding-top: 3em;
+  margin: 0 auto;
+}
+
+.SoundPlayer {
+  visibility: hidden;
+}
+.UserInput {
+  position: relative;
+  width: 900px;
+  height: 50px;
+  margin: 0 auto;
+}
+
+.UserInput button,
+.Backbutton {
+  background-color: #123239;
+  border: 2px solid #339999;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #339999;
+  margin: 0 10px 0 10px;
+  width: 100px;
+  height: 40px;
+  z-index: 99;
+}
+.UserInput button:hover,
+.Backbutton:hover {
+  background-color: #339999;
+  transition: ease 0.5s;
+  color: #123239;
+}

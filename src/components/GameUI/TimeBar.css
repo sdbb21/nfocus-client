@@ -1,0 +1,36 @@
+.Background {
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  height: 20px;
+  width: 600px;
+  padding: 0;
+  background-color: #123239;
+  border: 2px solid #339999;
+  border-radius: 10px;
+}
+.Background::after {
+  visibility: hidden;
+}
+
+.TimePassed {
+  position: relative;
+  height: 16px;
+  width: 600px;
+  margin: auto;
+  background-color: #339999;
+  animation: animationBar linear;
+  animation-iteration-count: 1;
+  transform-origin: 50% 50%;
+  border-radius: 4px;
+}
+
+@keyframes animationBar {
+  0% {
+    transform: scaleX(0);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}

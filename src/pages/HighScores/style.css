@@ -1,0 +1,41 @@
+.MainContainer {
+  background: rgb(30, 31, 36);
+  background: radial-gradient(
+    circle,
+    rgba(30, 31, 36, 1) 0%,
+    rgba(5, 27, 41, 1) 100%
+  );
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+}
+
+.ScoreBoardHeader {
+  position: relative;
+  width: 900px;
+  margin: 20px auto;
+}
+
+.ScoreBoard {
+  position: relative;
+  width: 900px;
+  margin: 10px auto;
+}
+
+.BackButton {
+  background-color: #123239;
+  border: 2px solid #339999;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #339999;
+  margin: 0 10px 0 10px;
+  width: 200px;
+  height: 40px;
+  z-index: 99;
+}
+.BackButton:hover {
+  background-color: #339999;
+  color: #123239;
+  transition: ease 0.5s;
+}

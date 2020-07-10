@@ -1,0 +1,20 @@
+.nav-item {
+  font-weight: bold;
+}
+
+.LogButton {
+  background-color: #123239;
+  border: 2px solid #339999;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #339999;
+  margin: 0 10px 0 10px;
+  width: 100px;
+  height: 40px;
+  z-index: 99;
+}
+.LogButton:hover {
+  background-color: #339999;
+  color: #123239;
+  transition: ease 0.5s;
+}
