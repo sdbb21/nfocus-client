@@ -23,7 +23,7 @@ export default function Start() {
         </Link>
       </div>
       <div className="Credits">
-        <h5>Created by Sebastian Baez</h5>
+        <h5>Created by Sebastián Baez</h5>
       </div>
     </div>
   );

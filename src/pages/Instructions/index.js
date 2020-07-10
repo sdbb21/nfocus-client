@@ -13,15 +13,15 @@ export default function Start() {
         <img className="Screenshot" src={screenshot1} alt="screenshot1" />
         <p>
           In this game you will see a set of figures on the screen in a certain
-          positions and you will hear a sound. In each series{" "}
+          position and you will hear a sound. In each series{" "}
           <strong>
             you must remember the position and sound that appeared 2 series back
             and compare them with the current one.
           </strong>
         </p>
         <p>
-          If you find that one or both of them are repeated, you must indicate
-          it by pressing the corresponding buttons on the screen.
+          If you find that one, both or none of them are repeated, you must
+          indicate it by pressing the corresponding buttons on the screen.
           <strong> If you fail 3 times, the game is over.</strong>
         </p>
       </div>

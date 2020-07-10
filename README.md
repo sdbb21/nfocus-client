@@ -26,7 +26,7 @@ The objective of nFocus is to provide the player an opportunity to use its conce
 
 ## App Demo
 
-### You can see a working version [here]()
+### You can see a working version 1.0 [here]()
 
 ## Used Technologies
 
